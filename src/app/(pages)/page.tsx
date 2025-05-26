@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
-const Page = (): ReactNode => {
+const Page = (): ReactElement => {
   return <div>Page</div>;
 };
 

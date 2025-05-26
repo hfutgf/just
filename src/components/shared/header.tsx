@@ -1,6 +1,7 @@
 'use client';
 
 import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import { ReactElement, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -12,11 +13,10 @@ const Header = (): ReactElement => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Логотип */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <Link href={'/'} className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="font-bold text-white text-lg">D</span>
               </div>
@@ -26,30 +26,29 @@ const Header = (): ReactElement => {
                 </h1>
                 <p className="text-xs text-gray-500 -mt-1">YL BIRRA</p>
               </div>
-            </div>
+            </Link>
           </div>
 
-          {/* Центральная навигация и поиск */}
           <div className="hidden lg:flex items-center flex-1 max-w-2xl mx-8">
             <nav className="flex items-center space-x-8 mr-8">
-              <a
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
                 Каталог
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
                 Новинки
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
                 Акции
-              </a>
+              </Link>
             </nav>
 
             <div className="relative flex-1">
@@ -74,7 +73,6 @@ const Header = (): ReactElement => {
             </div>
           </div>
 
-          {/* Действия */}
           <div className="flex items-center space-x-2">
             <Button
               variant="ghost"
@@ -106,7 +104,6 @@ const Header = (): ReactElement => {
               </span>
             </Button>
 
-            {/* Мобильное меню */}
             <Button
               variant="ghost"
               size="icon"
@@ -118,7 +115,6 @@ const Header = (): ReactElement => {
           </div>
         </div>
 
-        {/* Мобильный поиск */}
         <div className="lg:hidden py-3 border-t border-gray-100">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -130,7 +126,6 @@ const Header = (): ReactElement => {
           </div>
         </div>
 
-        {/* Мобильная навигация */}
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-100 bg-white/95 backdrop-blur-xl">
             <nav className="flex flex-col space-y-2">
