@@ -42,7 +42,6 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/explicit-function-return-type': ['warn', { allowExpressions: true }],
 
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',

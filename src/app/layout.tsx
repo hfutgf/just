@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
+import { ReactElement } from 'react';
+
+import ReactQueryProvider from '@/components/providers/react-query.provder';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,8 +16,8 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
-}>): React.ReactNode {
+  children: ReactElement;
+}>): ReactElement {
   return (
     <html lang="en">
       <body className={`${inter}  antialiased`}>
@@ -33,7 +36,7 @@ export default function RootLayout({
           zIndex={1600}
           showAtBottom={false}
         />
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

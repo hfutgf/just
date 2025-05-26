@@ -35,19 +35,19 @@ const Header = (): ReactElement => {
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
-                Каталог
+                Katalog
               </Link>
               <Link
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
-                Новинки
+                Yangiliklar
               </Link>
               <Link
                 href="#"
                 className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
               >
-                Акции
+                Aksiyalar
               </Link>
             </nav>
 
@@ -57,7 +57,7 @@ const Header = (): ReactElement => {
                 type="search"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Поиск товаров..."
+                placeholder="Mahsulot qidirish..."
                 className="w-full pl-12 pr-4 py-3 bg-gray-50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
               />
               {searchValue && (
@@ -120,7 +120,7 @@ const Header = (): ReactElement => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Input
               type="search"
-              placeholder="Поиск товаров..."
+              placeholder="Mahsulot qidirish..."
               className="w-full pl-12 pr-4 py-3 bg-gray-50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
             />
           </div>
@@ -133,26 +133,26 @@ const Header = (): ReactElement => {
                 variant="ghost"
                 className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
               >
-                Каталог
+                Katalog
               </Button>
               <Button
                 variant="ghost"
                 className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
               >
-                Новинки
+                Yangiliklar
               </Button>
               <Button
                 variant="ghost"
                 className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
               >
-                Акции
+                Aksiyalar
               </Button>
               <Button
                 variant="ghost"
                 className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
               >
                 <User className="h-4 w-4 mr-2" />
-                Профиль
+                Profil
               </Button>
             </nav>
           </div>
