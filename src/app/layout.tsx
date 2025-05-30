@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
 import { ReactElement } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import ReactQueryProvider from '@/components/providers/react-query.provder';
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           zIndex={1600}
           showAtBottom={false}
         />
+        <ToastContainer />
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
