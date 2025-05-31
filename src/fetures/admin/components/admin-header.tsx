@@ -1,4 +1,5 @@
 import { Menu, User } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -12,7 +13,9 @@ const AdminHeader = () => {
             <Menu className="w-5 h-5 text-slate-600" />
           </button>
 
-          <h1 className="text-xl font-semibold text-slate-800">Admin panel</h1>
+          <Link href="/admin">
+            <h1 className="text-xl font-semibold text-slate-800">Admin panel</h1>
+          </Link>
         </div>
 
         <div className="flex items-center space-x-4">
