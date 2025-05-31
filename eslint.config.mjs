@@ -38,6 +38,7 @@ const eslintConfig = [
       'react-hooks': (await import('eslint-plugin-react-hooks')).default,
       import: (await import('eslint-plugin-import')).default,
       prettier: (await import('eslint-plugin-prettier')).default,
+      'unused-imports': (await import('eslint-plugin-unused-imports')).default,
     },
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',
@@ -47,6 +48,17 @@ const eslintConfig = [
       'react/prop-types': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
 
       'import/order': [
         'error',

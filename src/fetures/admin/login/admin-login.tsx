@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 
+import { useAdminStore } from '../stores/admin.store';
+
 import { useAdminLogin } from './hooks/use-admin-login';
 import { loginSchema } from './schemas/login-schema';
 
@@ -36,6 +38,7 @@ const AdminLogin = () => {
   });
 
   const { adminLoginData, adminLoginMutation, isAdminLoginPending } = useAdminLogin();
+  const { login } = useAdminStore();
 
   const handleSubmit = async (values: FormValues) => {
     adminLoginMutation(values);
@@ -44,10 +47,11 @@ const AdminLogin = () => {
   useEffect(() => {
     if (adminLoginData?.success) {
       window.location.href = '/admin';
-    } else {
+      login(adminLoginData.admin);
+    } else if (adminLoginData && adminLoginData.success === false) {
       toast.error(adminLoginData?.message || 'Xatolik yuz berdi');
     }
-  }, [adminLoginData]);
+  }, [adminLoginData, login]);
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">

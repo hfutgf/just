@@ -1,12 +1,12 @@
-export type LoginForm = {
+export type LoginAdminForm = {
   username: string;
   password: string;
 };
 
-export type LoginResponse = {
+export type LoginAdminResponse = {
   success: boolean;
   message: string;
-  data: {
+  admin: {
     _id: number;
     username: string;
     name: string;

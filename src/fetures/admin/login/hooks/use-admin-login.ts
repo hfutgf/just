@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { LoginForm, LoginResponse } from '../types';
+import { LoginAdminForm, LoginAdminResponse } from '../types';
 
 import { axiosDefault } from '@/api/interceptors';
 
@@ -11,8 +11,8 @@ export function useAdminLogin() {
     data: adminLoginData,
   } = useMutation({
     mutationKey: ['adminLogin'],
-    mutationFn: async (body: LoginForm) => {
-      const response = await axiosDefault.post<LoginResponse>('/admin/auth/login', body);
+    mutationFn: async (body: LoginAdminForm) => {
+      const response = await axiosDefault.post<LoginAdminResponse>('/admin/auth/login', body);
       return response.data;
     },
   });
