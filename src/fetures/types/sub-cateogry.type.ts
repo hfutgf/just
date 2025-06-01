@@ -6,3 +6,10 @@ export type SucCategoryType = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type PaginationOptionsType = {
+  page: number;
+  limit: number;
+  totalPages: number;
+  totalItems: number;
+};

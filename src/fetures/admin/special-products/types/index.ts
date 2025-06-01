@@ -1,4 +1,4 @@
-import { SucCategoryType } from '@/fetures/types/sub-cateogry.type';
+import { PaginationOptionsType, SucCategoryType } from '@/fetures/types/sub-cateogry.type';
 
 export type SpecialProductType = {
   _id: string;
@@ -11,8 +11,17 @@ export type SpecialProductType = {
   updatedAt: string;
 };
 
+export type FetchSepcialProductsParamsType = {
+  page?: number;
+  limit?: number;
+  sort?: number;
+  search?: string;
+};
+
 export type ResponseSpecialProductsType = {
   data?: SpecialProductType[];
   success: boolean;
   message?: string;
+  pagination?: PaginationOptionsType;
+  total?: number;
 };

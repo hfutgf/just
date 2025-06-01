@@ -1,7 +1,9 @@
-import { Eye, Edit, Trash2, Loader } from 'lucide-react';
+import { Eye, Edit, Trash2, Loader2 } from 'lucide-react';
+import Image from 'next/image';
 
 import { SpecialProductType } from '../types';
 
+import { Button } from '@/components/ui/button';
 import { formatPrice } from '@/utils/format-price';
 
 export const GridView = ({
@@ -16,7 +18,7 @@ export const GridView = ({
       {isFetchProducts && (
         <div className="col-span-full">
           <div className="flex justify-center items-center h-40">
-            <Loader className="w-8 h-8 bg-blue-500" />
+            <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
           </div>
         </div>
       )}
@@ -26,20 +28,33 @@ export const GridView = ({
             key={product._id}
             className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow"
           >
-            <div className="relative">
-              <img
+            <div className="relative w-full h-48">
+              <Image
                 src={product.images[0]}
                 alt={product.name}
-                className="w-full h-48 object-cover"
+                fill
+                className="object-cover rounded-lg"
               />
 
               <div className="absolute top-2 right-2 flex space-x-1">
-                <button className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                <Button
+                  size={'icon'}
+                  className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors"
+                >
                   <Eye className="w-4 h-4 text-slate-600" />
-                </button>
-                <button className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                </Button>
+                <Button
+                  size={'icon'}
+                  className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors"
+                >
                   <Edit className="w-4 h-4 text-slate-600" />
-                </button>
+                </Button>
+                <Button
+                  size={'icon'}
+                  className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors"
+                >
+                  <Trash2 className="w-4 h-4 text-red-400" />
+                </Button>
               </div>
             </div>
 
@@ -57,15 +72,6 @@ export const GridView = ({
                 <span className="text-lg font-bold text-slate-900">
                   {formatPrice(product.price)} UZS
                 </span>
-              </div>
-
-              <div className="flex space-x-2">
-                <button className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded-md text-sm font-medium transition-colors">
-                  Редактировать
-                </button>
-                <button className="p-2 text-red-500 hover:bg-red-50 rounded-md transition-colors">
-                  <Trash2 className="w-4 h-4" />
-                </button>
               </div>
             </div>
           </div>

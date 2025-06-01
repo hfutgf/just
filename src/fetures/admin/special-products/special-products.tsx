@@ -1,17 +1,45 @@
 'use client';
 
-import { Grid, List, Plus, Search, Filter } from 'lucide-react';
-import React, { useState } from 'react';
+import { Grid, List, Plus, Filter } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 import { GridView } from './components/grid-view';
 import { ListView } from './components/list-view';
+import Pagination from './components/pagination';
 import { useFetchSpecialProducts } from './hooks/use-fetch-special-products';
+
+import InputSearch from '@/components/ui/input-search';
+import { useDebounce } from '@/hooks/use-debounce';
 
 const SpecialProducts = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(12);
 
-  const { isFetchProducts, products } = useFetchSpecialProducts();
+  const debouncedSearch = useDebounce(searchTerm, 500);
+
+  const { isFetchProducts, products, refetchSpecialProducts } = useFetchSpecialProducts({
+    page: currentPage,
+    limit: pageSize,
+    search: debouncedSearch,
+  });
+
+  useEffect(() => {
+    refetchSpecialProducts();
+  }, [currentPage, refetchSpecialProducts, debouncedSearch]);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < (products?.pagination?.totalPages ?? 1)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -28,16 +56,7 @@ const SpecialProducts = () => {
 
       <div className="flex items-center justify-between bg-white rounded-lg border border-slate-200 p-4">
         <div className="flex items-center space-x-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Mahsulotlarni qidirish..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
+          <InputSearch value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
           <button className="flex items-center space-x-2 px-3 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors">
             <Filter className="w-4 h-4テキスト - slate-500" />
             <span className="text-slate-700">Filtrlar</span>
@@ -70,19 +89,31 @@ const SpecialProducts = () => {
 
       {products?.success && products?.data && (
         <>
-          <div>
+          <div className="space-y-6">
             {viewMode === 'grid' ? (
               <GridView isFetchProducts={isFetchProducts} products={products.data} />
             ) : (
               <ListView isFetchProducts={isFetchProducts} products={products.data} />
             )}
+            <Pagination
+              isFetchProducts={isFetchProducts}
+              currentPage={currentPage}
+              totalPages={products?.pagination?.totalPages || 1}
+              onPageChange={setCurrentPage}
+              handleNextPage={handleNextPage}
+              handlePrevPage={handlePrevPage}
+            />
           </div>
 
           <div className="bg-white rounded-lg border border-slate-200 p-4">
             <div className="flex items-center justify-between text-sm text-slate-600">
-              <span>Jami mahsulotlar: {products && products.data?.length}</span>
+              <span>Jami mahsulotlar: {products.total}</span>
               <span>
-                Ko‘rsatilgan: {products?.data?.length} / {products?.data?.length}
+                Ko‘rsatilgan:{' '}
+                {currentPage * pageSize < (products?.total ?? 0)
+                  ? currentPage * pageSize
+                  : products.total}
+                / {products.total}
               </span>
             </div>
           </div>
