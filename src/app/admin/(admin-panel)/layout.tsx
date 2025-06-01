@@ -12,7 +12,9 @@ const AdminPanelLayout = ({ children }: { children: ReactElement }) => {
         <AdminSidebar />
 
         <main className="flex-1 min-h-[calc(100vh-4rem)]">
-          <div className="p-6">{children}</div>
+          <div className="p-6 min-h-[calc(100vh-4rem)] max-h-[calc(100vh-4rem)] overflow-y-auto">
+            {children}
+          </div>
         </main>
       </div>
     </div>

@@ -1,10 +1,15 @@
-import { Menu, User } from 'lucide-react';
+'use client';
+
+import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+
+import { useAdminStore } from '../stores/admin.store';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const AdminHeader = () => {
+  const { admin } = useAdminStore();
   return (
     <header className="bg-white border-b border-slate-200 h-16 px-6">
       <div className="h-full flex items-center justify-between">
@@ -21,14 +26,12 @@ const AdminHeader = () => {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-3">
             <div className="hidden sm:block text-right">
-              <div className="text-sm font-medium text-slate-700">Admin</div>
-              <div className="text-xs text-slate-500">admin@example.com</div>
+              <div className="text-sm font-medium text-slate-700">{admin?.name}</div>
+              <div className="text-xs text-slate-500">{admin?.username}</div>
             </div>
-            <button className="flex items-center space-x-2 p-2 hover:bg-slate-100 rounded-lg transition-colors">
+            <button className="flex items-center space-x-2 p-2 rounded-lg transition-colors">
               <Avatar className="w-8 h-8">
-                <AvatarFallback className="bg-blue-500 text-white">
-                  <User className="w-4 h-4" />
-                </AvatarFallback>
+                <AvatarFallback>{admin?.name?.[0]}</AvatarFallback>
               </Avatar>
             </button>
           </div>

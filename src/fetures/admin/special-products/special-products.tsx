@@ -5,6 +5,7 @@ import { Grid, List, Plus } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
 
+import CategoryFilter from './components/category-filter';
 import { GridView } from './components/grid-view';
 import { ListView } from './components/list-view';
 import Pagination from './components/pagination';
@@ -116,6 +117,7 @@ const SpecialProducts = () => {
             onChange={(e) => handleSearchChange(e.target.value)}
           />
           <ProductsFilter form={form} />
+          <CategoryFilter />
         </div>
 
         <div className="flex items-center space-x-2 bg-slate-100 rounded-lg p-1">

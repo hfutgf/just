@@ -35,7 +35,6 @@ export const GridView = ({
                 fill
                 className="object-cover rounded-lg"
               />
-
               <div className="absolute top-2 right-2 flex space-x-1">
                 <Button
                   size={'icon'}
@@ -57,7 +56,6 @@ export const GridView = ({
                 </Button>
               </div>
             </div>
-
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
@@ -67,7 +65,6 @@ export const GridView = ({
                   </p>
                 </div>
               </div>
-
               <div className="flex items-center space-x-2 mb-3">
                 <span className="text-lg font-bold text-slate-900">
                   {formatPrice(product.price)} UZS

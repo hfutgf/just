@@ -19,7 +19,7 @@ const paths = [
 const AdminSidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="w-64 relative bg-white border-r border-slate-200 min-h-[calc(100vh-4rem)]">
+    <aside className="w-64 relative bg-white border-r border-slate-200 max-h-[calc(100vh-4rem)] min-h-[calc(100vh-4rem)]">
       <div className="p-4">
         <nav className="space-y-2">
           <div className="px-2 mb-4">
