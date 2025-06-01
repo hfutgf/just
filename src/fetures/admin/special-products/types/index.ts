@@ -14,8 +14,10 @@ export type SpecialProductType = {
 export type FetchSepcialProductsParamsType = {
   page?: number;
   limit?: number;
-  sort?: number;
+  sortOrder?: string;
   search?: string;
+  maxPrice?: string;
+  minPrice?: string;
 };
 
 export type ResponseSpecialProductsType = {
