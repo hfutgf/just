@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
-import { ReactElement } from 'react';
+import { ReactElement, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import ReactQueryProvider from '@/components/providers/react-query.provder';
+import Loading from '@/components/shared/loading';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,7 +39,9 @@ export default function RootLayout({
           showAtBottom={false}
         />
         <ToastContainer />
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </ReactQueryProvider>
       </body>
     </html>
   );
