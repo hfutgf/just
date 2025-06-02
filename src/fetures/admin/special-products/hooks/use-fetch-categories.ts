@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { CategoryResponseType } from '../types/category.types';
-
 import { axiosDefault } from '@/api/interceptors';
+import { CategoryResponseType } from '@/fetures/types/category.types';
 
 export const useFetchCategories = () => {
   const { data: categories, isLoading: isFetchCategory } = useQuery({

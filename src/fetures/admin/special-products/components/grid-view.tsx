@@ -1,5 +1,6 @@
 import { Eye, Edit, Trash2, Loader2 } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { SpecialProductType } from '../types';
 
@@ -13,6 +14,7 @@ export const GridView = ({
   products?: SpecialProductType[];
   isFetchProducts: boolean;
 }) => {
+  const router = useRouter();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {isFetchProducts && (
@@ -43,6 +45,7 @@ export const GridView = ({
                   <Eye className="w-4 h-4 text-slate-600" />
                 </Button>
                 <Button
+                  onClick={() => router.push(`/admin/special-products/${product._id}/edit`)}
                   size={'icon'}
                   className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors"
                 >
@@ -67,7 +70,7 @@ export const GridView = ({
               </div>
               <div className="flex items-center space-x-2 mb-3">
                 <span className="text-lg font-bold text-slate-900">
-                  {formatPrice(product.price)} UZS
+                  {formatPrice(product.price.toString())} UZS
                 </span>
               </div>
             </div>

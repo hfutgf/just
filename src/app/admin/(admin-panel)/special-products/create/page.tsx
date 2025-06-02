@@ -1,7 +1,15 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
+const SpecialProductCreate = dynamic(
+  () => import('@/fetures/admin/special-products/hooks/special-product-create'),
+  {
+    ssr: Boolean(false),
+  }
+);
+
 const CreateSpecialProductPage = () => {
-  return <div>CreateSpecialProductPage</div>;
+  return <SpecialProductCreate />;
 };
 
 export default CreateSpecialProductPage;

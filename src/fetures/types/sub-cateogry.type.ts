@@ -1,4 +1,4 @@
-export type SucCategoryType = {
+export type SubCategoryType = {
   _id: string;
   subCategoryName: string;
   subCategoryName_ru: string;

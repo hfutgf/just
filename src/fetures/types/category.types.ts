@@ -1,11 +1,5 @@
-export type SubCategoryType = {
-  _id: string;
-  subCategoryName: string;
-  subCategoryName_ru: string;
-  categoryId: string;
-  createdAt: string;
-  updatedAt: string;
-};
+import { SubCategoryType } from './sub-cateogry.type';
+
 export type CategoryType = {
   _id: string;
   categoryName: string;

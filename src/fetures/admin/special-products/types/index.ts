@@ -1,12 +1,18 @@
-import { PaginationOptionsType, SucCategoryType } from '@/fetures/types/sub-cateogry.type';
+import { CategoryType } from '@/fetures/types/category.types';
+import { PaginationOptionsType, SubCategoryType } from '@/fetures/types/sub-cateogry.type';
 
 export type SpecialProductType = {
   _id: string;
   name: string;
   name_ru: string;
   images: string[];
-  price: string;
-  subCategoryId: SucCategoryType;
+  price: number;
+  description: string;
+  description_ru: string;
+  deliveryInfo: string;
+  deliveryInfo_ru: string;
+  subCategoryId: SubCategoryType;
+  categoryId: CategoryType;
   createdAt: string;
   updatedAt: string;
 };
@@ -28,4 +34,10 @@ export type ResponseSpecialProductsType = {
   message?: string;
   pagination?: PaginationOptionsType;
   total?: number;
+};
+
+export type ResponseSpecialProductType = {
+  data?: SpecialProductType;
+  success: boolean;
+  message?: string;
 };

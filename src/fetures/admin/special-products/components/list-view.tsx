@@ -62,7 +62,7 @@ export const ListView = ({
                   <td className="py-4 px-4">
                     <div>
                       <span className="font-semibold text-slate-900">
-                        {formatPrice(product.price)} UZS
+                        {formatPrice(product.price.toString())} UZS
                       </span>
                     </div>
                   </td>

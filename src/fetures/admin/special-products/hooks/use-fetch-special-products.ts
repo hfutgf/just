@@ -4,7 +4,7 @@ import { FetchSepcialProductsParamsType, ResponseSpecialProductsType } from '../
 
 import { axiosAdminApi } from '@/api/interceptors';
 
-export function useFetchSpecialProducts(params: FetchSepcialProductsParamsType) {
+export function useFetchSpecialProducts(params?: FetchSepcialProductsParamsType) {
   const {
     data: products,
     isLoading: isFetchProducts,

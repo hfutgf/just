@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Grid, List, Plus } from 'lucide-react';
+import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
 
@@ -106,14 +107,13 @@ const SpecialProducts = () => {
           <h1 className="text-2xl font-bold text-slate-800">Maxsus mahsulotlar</h1>
           <p className="text-slate-600 mt-1">Chegirmali mahsulotlarni boshqarish</p>
         </div>
-        <Button
-          size={'lg'}
-          variant={'outline'}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 transition-colors"
+        <Link
+          href={'/admin/special-products/create'}
+          className="bg-blue-500 hover:bg-blue-600 text-white hover:text-white px-4 py-2 rounded-lg font-medium flex items-center space-x-2 transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span>Mahsulot qo&apos;shish</span>
-        </Button>
+        </Link>
       </div>
 
       <div className="flex items-center justify-between bg-white rounded-lg border border-slate-200 p-4">
