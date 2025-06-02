@@ -69,7 +69,7 @@ function ProductsFilter({ form }: Props) {
                   <span>Standart</span>
                 </div>
               </SelectItem>
-              <SelectItem value="asc">
+              <SelectItem value="desc">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 flex items-center justify-center">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -77,7 +77,7 @@ function ProductsFilter({ form }: Props) {
                   <span>Yangi mahsulotlar</span>
                 </div>
               </SelectItem>
-              <SelectItem value="desc">
+              <SelectItem value="asc">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 flex items-center justify-center">
                     <div className="w-2 h-2 bg-gray-400 rounded-full"></div>

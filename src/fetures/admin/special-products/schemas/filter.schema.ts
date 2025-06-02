@@ -19,6 +19,8 @@ export const filtersSchema = z
     pageSize: z.number().min(1).max(100).default(12),
     viewMode: z.enum(['grid', 'list']).default('grid'),
     sortOrder: z.string().default('newest').optional(),
+    categoryIds: z.array(z.string()).optional(),
+    subCategoryIds: z.array(z.string()).optional(),
   })
   .refine(
     (data) => {

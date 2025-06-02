@@ -43,6 +43,8 @@ const SpecialProducts = () => {
   const pageSize = watch('pageSize');
   const viewMode = watch('viewMode');
   const sortOrder = watch('sortOrder');
+  const categoryIds = watch('categoryIds');
+  const subCategoryIds = watch('subCategoryIds');
 
   const debouncedSearch = useDebounce(searchTerm, 500);
   const debouncedMinPrice = useDebounce(minPrice, 500);
@@ -55,6 +57,8 @@ const SpecialProducts = () => {
     minPrice: debouncedMinPrice || undefined,
     maxPrice: debouncedMaxPrice || undefined,
     sortOrder,
+    categoryIds,
+    subCategoryIds,
   });
 
   useEffect(() => {
@@ -66,6 +70,8 @@ const SpecialProducts = () => {
     debouncedMinPrice,
     debouncedMaxPrice,
     sortOrder,
+    categoryIds,
+    subCategoryIds,
   ]);
 
   const handlePrevPage = () => {
@@ -117,7 +123,7 @@ const SpecialProducts = () => {
             onChange={(e) => handleSearchChange(e.target.value)}
           />
           <ProductsFilter form={form} />
-          <CategoryFilter />
+          <CategoryFilter form={form} />
         </div>
 
         <div className="flex items-center space-x-2 bg-slate-100 rounded-lg p-1">

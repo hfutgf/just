@@ -1,7 +1,9 @@
 import { ChevronDown, ListFilterPlus } from 'lucide-react';
 import React from 'react';
+import { UseFormReturn } from 'react-hook-form';
 
 import { useFetchCategories } from '../hooks/use-fetch-categories';
+import { FiltersSchema } from '../schemas/filter.schema';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -12,8 +14,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-const CategoryFilter = () => {
+type Props = {
+  form: UseFormReturn<FiltersSchema>;
+};
+
+const CategoryFilter = ({ form }: Props) => {
   const { categories, isFetchCategory } = useFetchCategories();
+  const watchCategories = form.watch('categoryIds');
+  const watchsubCategoryIds = form.watch('subCategoryIds');
 
   return (
     <DropdownMenu>
@@ -31,7 +39,17 @@ const CategoryFilter = () => {
               categories.data.map((category) => (
                 <div key={category._id} className="space-y-1">
                   <div className="flex items-center space-x-2 p-2 hover:bg-accent rounded">
-                    <Checkbox id={`cat-${category._id}`} />
+                    <Checkbox
+                      id={`cat-${category._id}`}
+                      checked={watchCategories?.includes(category._id)}
+                      onCheckedChange={(checked) => {
+                        const current = form.getValues('categoryIds') || [];
+                        const updated = checked
+                          ? [...current, category._id]
+                          : current.filter((id) => id !== category._id);
+                        form.setValue('categoryIds', updated);
+                      }}
+                    />
                     <label htmlFor={`cat-${category._id}`} className="text-sm font-medium">
                       {category.categoryName}
                     </label>
@@ -42,7 +60,17 @@ const CategoryFilter = () => {
                         key={subcategory._id}
                         className="flex items-center space-x-2 p-2 hover:bg-accent rounded"
                       >
-                        <Checkbox id={`sub-${category._id}-${subcategory._id}`} />
+                        <Checkbox
+                          id={`sub-${category._id}-${subcategory._id}`}
+                          checked={watchsubCategoryIds?.includes(subcategory._id)}
+                          onCheckedChange={(checked) => {
+                            const current = form.getValues('subCategoryIds') || [];
+                            const updated = checked
+                              ? [...current, subcategory._id]
+                              : current.filter((id) => id !== subcategory._id);
+                            form.setValue('subCategoryIds', updated);
+                          }}
+                        />
                         <label
                           htmlFor={`sub-${category._id}-${subcategory._id}`}
                           className="text-sm text-muted-foreground"

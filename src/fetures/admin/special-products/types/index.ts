@@ -18,6 +18,8 @@ export type FetchSepcialProductsParamsType = {
   search?: string;
   maxPrice?: string;
   minPrice?: string;
+  categoryIds?: string[];
+  subCategoryIds?: string[];
 };
 
 export type ResponseSpecialProductsType = {
