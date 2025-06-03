@@ -1,15 +1,20 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-import SpecialProductUpdate from '@/fetures/admin/special-products/update/special-product-update';
-
-const SpecialProductUpdatePage = ({
-  params,
-}: {
-  params: {
+const SpecialProductUpdate = dynamic(
+  () => import('@/fetures/admin/special-products/update/special-product-update'),
+  {
+    ssr: Boolean(false),
+  }
+);
+interface SpecialProductUpdatePageProps {
+  params: Promise<{
     id: string;
-  };
-}) => {
-  const { id } = params;
+  }>;
+}
+
+const SpecialProductUpdatePage = async ({ params }: SpecialProductUpdatePageProps) => {
+  const { id } = await params;
   return <SpecialProductUpdate specialProductId={id} />;
 };
 

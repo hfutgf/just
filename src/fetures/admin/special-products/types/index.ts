@@ -41,3 +41,9 @@ export type ResponseSpecialProductType = {
   success: boolean;
   message?: string;
 };
+
+export type ResponseUploadImageType = {
+  data?: string[];
+  success: boolean;
+  message?: string;
+};

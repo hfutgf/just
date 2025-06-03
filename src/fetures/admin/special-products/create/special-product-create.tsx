@@ -3,10 +3,11 @@
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import { useCreateSpecialProduct } from '../hooks/use-create-special-product';
 
-import SpecialProductForm from './form';
+import SpecialProductForm from './create-form';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -16,6 +17,7 @@ const SpecialProductCreate = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success('Maxsus mahsulot muvaffaqiyatli yaratildi!');
       router.push('/admin/special-products');
     }
   }, [isSuccess, router]);

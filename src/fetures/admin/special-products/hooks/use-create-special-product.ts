@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { SpecialProductFormType } from '../schemas/special-product.schema';
 import { ResponseSpecialProductType } from '../types';
 
 import { axiosAdminApi } from '@/api/interceptors';
@@ -11,15 +12,10 @@ export function useCreateSpecialProduct() {
     isSuccess,
   } = useMutation({
     mutationKey: ['special-product-create'],
-    mutationFn: async (body: FormData) => {
+    mutationFn: async (body: SpecialProductFormType) => {
       const response = await axiosAdminApi.post<ResponseSpecialProductType>(
         '/specialproducts',
-        body,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
+        body
       );
       return response.data;
     },

@@ -10,9 +10,7 @@ export const specialProductroductFormSchema = z.object({
   subCategoryId: z.string().min(1, 'Subkategoriyani tanlang'),
   deliveryInfo: z.string().optional(),
   deliveryInfo_ru: z.string().optional(),
-  images: z.custom<File[]>((val) => val instanceof Array && val.length > 0, {
-    message: 'Kamida 1 ta rasm yuklashingiz kerak',
-  }),
+  images: z.array(z.string()).optional(),
 });
 
 export type SpecialProductFormType = z.infer<typeof specialProductroductFormSchema>;
