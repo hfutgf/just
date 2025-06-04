@@ -3,22 +3,28 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Grid, List, Plus } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Resolver, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import CategoryFilter from './components/category-filter';
 import { GridView } from './components/grid-view';
 import { ListView } from './components/list-view';
 import Pagination from './components/pagination';
 import ProductsFilter from './components/product-filter';
+import { useDeleteSpecialProduct } from './hooks/use-delete-special-product';
 import { useFetchSpecialProducts } from './hooks/use-fetch-special-products';
 import { filtersSchema, FiltersSchema } from './schemas/filter.schema';
+import { SpecialProductType } from './types';
 
 import { Button } from '@/components/ui/button';
 import InputSearch from '@/components/ui/input-search';
 import { useDebounce } from '@/hooks/use-debounce';
 
 const SpecialProducts = () => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<SpecialProductType | null>(null);
+
   const form = useForm<FiltersSchema>({
     resolver: zodResolver(filtersSchema) as Resolver<FiltersSchema>,
     defaultValues: {
@@ -62,6 +68,17 @@ const SpecialProducts = () => {
     subCategoryIds,
   });
 
+  const { deleteProduct, isDeleteProductPending, isDeleteProductSuccess } =
+    useDeleteSpecialProduct();
+
+  useEffect(() => {
+    if (isDeleteProductSuccess) {
+      toast.error('Mahsulot o`chirildi');
+      setSelectedProduct(null);
+      setIsDeleteModalOpen(false);
+    }
+  }, [isDeleteProductSuccess]);
+
   useEffect(() => {
     refetchSpecialProducts();
   }, [
@@ -73,6 +90,7 @@ const SpecialProducts = () => {
     sortOrder,
     categoryIds,
     subCategoryIds,
+    isDeleteProductSuccess,
   ]);
 
   const handlePrevPage = () => {
@@ -169,9 +187,27 @@ const SpecialProducts = () => {
         <>
           <div className="space-y-6">
             {viewMode === 'grid' ? (
-              <GridView isFetchProducts={isFetchProducts} products={products.data} />
+              <GridView
+                deleteProduct={deleteProduct}
+                isDeleteProductPending={isDeleteProductPending}
+                isFetchProducts={isFetchProducts}
+                products={products.data}
+                isDeleteModalOpen={isDeleteModalOpen}
+                selectedProduct={selectedProduct}
+                setIsDeleteModalOpen={setIsDeleteModalOpen}
+                setSelectedProduct={setSelectedProduct}
+              />
             ) : (
-              <ListView isFetchProducts={isFetchProducts} products={products.data} />
+              <ListView
+                deleteProduct={deleteProduct}
+                isDeleteProductPending={isDeleteProductPending}
+                isFetchProducts={isFetchProducts}
+                products={products.data}
+                isDeleteModalOpen={isDeleteModalOpen}
+                selectedProduct={selectedProduct}
+                setIsDeleteModalOpen={setIsDeleteModalOpen}
+                setSelectedProduct={setSelectedProduct}
+              />
             )}
             <Pagination
               isFetchProducts={isFetchProducts}

@@ -39,6 +39,7 @@ export default function RootLayout({
           showAtBottom={false}
         />
         <ToastContainer />
+        <div id="radix-portals" />
         <ReactQueryProvider>
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </ReactQueryProvider>

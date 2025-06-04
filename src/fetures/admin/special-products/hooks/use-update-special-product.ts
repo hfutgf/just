@@ -11,7 +11,7 @@ export function useUpdateSpecialProduct(specialProductId: string) {
     isPending: isUpdateSpecialProduct,
     isSuccess,
   } = useMutation({
-    mutationKey: ['special-product-update'],
+    mutationKey: ['special-product-update', specialProductId],
     mutationFn: async (body: Partial<UpdateSpecialProductFormType>) => {
       const response = await axiosAdminApi.patch<ResponseSpecialProductType>(
         `/specialproducts/${specialProductId}`,
