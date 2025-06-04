@@ -1,3 +1,5 @@
+'use client';
+
 import { LogOut } from 'lucide-react';
 import React, { useEffect } from 'react';
 
@@ -24,14 +26,11 @@ const AdminLogout = () => {
       <Button
         disabled={isLogoutPending}
         onClick={handleLogout}
-        asChild
         variant="ghost"
-        className="hover:bg-red-50 hover:text-red-600 cursor-pointer"
+        className="hover:bg-red-50 hover:text-red-600 cursor-pointer flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-600 transition-colors w-full"
       >
-        <div className="flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-600 transition-colors w-full">
-          <LogOut className="w-5 h-5" />
-          <span>Chiqish</span>
-        </div>
+        <LogOut className="w-5 h-5" />
+        <span>Chiqish</span>
       </Button>
     </div>
   );

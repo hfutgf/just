@@ -89,6 +89,7 @@ export const ListView = ({
                   <TableCell className="py-4 px-4">
                     <div className="flex items-center justify-end space-x-2">
                       <Button
+                        onClick={() => router.push(`/admin/special-products/${product._id}`)}
                         size={'icon'}
                         variant={'ghost'}
                         className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"

@@ -60,6 +60,7 @@ export const GridView = ({
                 />
                 <div className="absolute top-2 right-2 flex space-x-1">
                   <Button
+                    onClick={() => router.push(`/admin/special-products/${product._id}`)}
                     size="icon"
                     className="p-2 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white transition-colors"
                   >

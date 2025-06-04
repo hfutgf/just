@@ -123,7 +123,7 @@ const CreateForm = ({ isCreateSpecialProduct, createProduct }: Props) => {
                   disabled={!images || images.length === 0 || isUploadImages}
                   className="bg-blue-500 hover:bg-blue-600 text-white hover:text-white"
                 >
-                  Keyingi qadam
+                  Rasmlarni saqlash
                 </Button>
               </div>
             </form>
