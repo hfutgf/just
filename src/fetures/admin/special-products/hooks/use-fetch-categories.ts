@@ -8,7 +8,6 @@ export const useFetchCategories = () => {
     queryKey: ['categories'],
     queryFn: async () => {
       const response = await axiosDefault<CategoryResponseType>('categories');
-
       return response.data;
     },
   });

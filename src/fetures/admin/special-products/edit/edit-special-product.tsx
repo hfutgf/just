@@ -5,19 +5,19 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import { useCreateSpecialProduct } from '../hooks/use-create-special-product';
+import { useUpdateSpecialProduct } from '../hooks/use-update-special-product';
 
-import SpecialProductForm from './create-form';
+import UpdateForm from './edit-form';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const SpecialProductCreate = () => {
-  const { isCreateSpecialProduct, createProduct, isSuccess } = useCreateSpecialProduct();
+const EditSpecialProduct = ({ specialProductId }: { specialProductId: string }) => {
+  const { isSuccess, isUpdateSpecialProduct, update } = useUpdateSpecialProduct(specialProductId);
   const router = useRouter();
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success('Maxsus mahsulot muvaffaqiyatli yaratildi!');
+      toast.success(`Maxsus mahsulot muvaffaqiyatli o'zgartirildi!`);
       router.push('/admin/special-products');
     }
   }, [isSuccess, router]);
@@ -28,14 +28,14 @@ const SpecialProductCreate = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Plus className="w-5 h-5" />
-            Maxsus mahsulot yaratish
+            Maxsus mahsulotni o&apos;zgartirish
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <SpecialProductForm
-            isCreateSpecialProduct={isCreateSpecialProduct}
-            createProduct={createProduct}
-            isCreateSuccess={isSuccess}
+          <UpdateForm
+            isUpdateSpecialProduct={isUpdateSpecialProduct}
+            updateProduct={update}
+            specialProductId={specialProductId}
           />
         </CardContent>
       </Card>
@@ -43,4 +43,4 @@ const SpecialProductCreate = () => {
   );
 };
 
-export default SpecialProductCreate;
+export default EditSpecialProduct;

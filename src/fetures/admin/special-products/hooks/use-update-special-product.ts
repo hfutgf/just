@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { UpdateSpecialProductFormType } from '../schemas/update-special-product.schema';
 import { ResponseSpecialProductType } from '../types';
 
 import { axiosAdminApi } from '@/api/interceptors';
@@ -11,15 +12,10 @@ export function useUpdateSpecialProduct(specialProductId: string) {
     isSuccess,
   } = useMutation({
     mutationKey: ['special-product-update'],
-    mutationFn: async (body: FormData) => {
+    mutationFn: async (body: Partial<UpdateSpecialProductFormType>) => {
       const response = await axiosAdminApi.patch<ResponseSpecialProductType>(
         `/specialproducts/${specialProductId}`,
-        body,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
+        body
       );
       return response.data;
     },

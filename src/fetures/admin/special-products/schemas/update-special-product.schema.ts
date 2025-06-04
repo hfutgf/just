@@ -11,7 +11,6 @@ export const updateSpecialProductroductFormSchema = z.object({
   deliveryInfo: z.string().optional(),
   deliveryInfo_ru: z.string().optional(),
   images: z.array(z.string()).optional(),
-  newImages: z.custom<File[]>((val) => val instanceof Array).optional(),
   deleteImages: z.array(z.string()).optional(),
 });
 
