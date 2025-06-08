@@ -55,7 +55,7 @@ const CategoryFilter = ({ form }: Props) => {
                     </label>
                   </div>
                   <div className="ml-6 space-y-1">
-                    {category.subCategories.map((subcategory) => (
+                    {category?.subCategories?.map((subcategory) => (
                       <div
                         key={subcategory._id}
                         className="flex items-center space-x-2 p-2 hover:bg-accent rounded"

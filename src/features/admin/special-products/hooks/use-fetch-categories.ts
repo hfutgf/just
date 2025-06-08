@@ -1,16 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { axiosDefault } from '@/api/interceptors';
-import { CategoryResponseType } from '@/features/types/category.types';
+import { CategoriesResponseType } from '@/features/types/category.types';
 
 export const useFetchCategories = () => {
-  const { data: categories, isLoading: isFetchCategory } = useQuery({
+  const {
+    data: categories,
+    isLoading: isFetchCategory,
+    refetch,
+  } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      const response = await axiosDefault<CategoryResponseType>('categories');
+      const response = await axiosDefault<CategoriesResponseType>('categories');
       return response.data;
     },
   });
 
-  return { categories, isFetchCategory };
+  return { categories, isFetchCategory, refetch };
 };

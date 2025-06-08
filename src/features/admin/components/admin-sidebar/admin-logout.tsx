@@ -22,7 +22,7 @@ const AdminLogout = () => {
   }, [logoutData]);
 
   return (
-    <div className="absolute bottom-4 left-4 right-4">
+    <div>
       <Button
         disabled={isLogoutPending}
         onClick={handleLogout}

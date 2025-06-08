@@ -343,7 +343,7 @@ const EditForm = ({ isUpdateSpecialProduct, updateProduct, specialProductId }: P
                                 {watchCategory &&
                                   categories?.data
                                     .find((category) => category._id === watchCategory)
-                                    ?.subCategories.map((subcategory) => (
+                                    ?.subCategories?.map((subcategory) => (
                                       <SelectItem key={subcategory._id} value={subcategory._id}>
                                         {subcategory.subCategoryName}
                                       </SelectItem>

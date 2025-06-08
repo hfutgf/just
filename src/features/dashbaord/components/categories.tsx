@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { CategoryResponseType } from '@/features/types/category.types';
+import { CategoriesResponseType } from '@/features/types/category.types';
 
 type CategoriesPropsType = {
-  categories: CategoryResponseType;
+  categories: CategoriesResponseType;
 };
 
 const Categories = ({ categories }: CategoriesPropsType) => {
