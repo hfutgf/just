@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useFetchCategories } from '../hooks/use-fetch-categories';
+import { useFetchCategories } from '../../catalogs/categories/hooks/use-fetch-categories';
 import { useFetchSpecialProduct } from '../hooks/use-fetch-special-product';
 import { useUploadImages } from '../hooks/use-upload-image';
 import { SpecialProductFormType } from '../schemas/special-product.schema';

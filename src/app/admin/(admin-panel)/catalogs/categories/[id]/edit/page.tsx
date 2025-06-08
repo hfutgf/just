@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 
 import { serverApiFetch } from '@/api/server-api';
-import EditCategory from '@/features/admin/categories/edit-category';
+import EditCategory from '@/features/admin/catalogs/categories/edit-category';
 import { CategoryResponseType } from '@/features/types/category.types';
 
 interface EditCategoryPageProps {

@@ -2,7 +2,7 @@ import { ChevronDown, ListFilterPlus } from 'lucide-react';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
-import { useFetchCategories } from '../hooks/use-fetch-categories';
+import { useFetchCategories } from '../../catalogs/categories/hooks/use-fetch-categories';
 import { FiltersSchema } from '../schemas/filter.schema';
 
 import { Button } from '@/components/ui/button';

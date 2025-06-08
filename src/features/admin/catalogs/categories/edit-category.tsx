@@ -7,11 +7,11 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { useCreateCategory } from './hooks/use-create-category';
+import { useEditCategory } from './hooks/use-edit-category';
 import {
-  createCategoryFormSchema,
-  CreateCategoryFormValues,
-} from './schemas/create-category.schema';
+  updateCategoryFormSchema,
+  UpdateCategoryFormValues,
+} from './schemas/update-category.schema';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -31,30 +31,34 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { CategoryType } from '@/features/types/category.types';
 
-const CreateCategory = () => {
+const EditCategory = ({ category }: { category: CategoryType }) => {
   const router = useRouter();
 
-  const form = useForm<CreateCategoryFormValues>({
-    resolver: zodResolver(createCategoryFormSchema),
+  const form = useForm<UpdateCategoryFormValues>({
+    resolver: zodResolver(updateCategoryFormSchema),
     defaultValues: {
-      categoryName: '',
-      categoryName_ru: '',
-      icon: '',
+      categoryName: category.categoryName ?? '',
+      categoryName_ru: category.categoryName_ru ?? '',
+      icon: category.icon ?? '',
     },
   });
 
-  const { createCategory, isCategoryCreate, isSuccess, responseData } = useCreateCategory();
+  const { editCategory, isEditCategory, isSuccess, responseData } = useEditCategory();
 
-  const onSubmit = (data: CreateCategoryFormValues) => {
-    createCategory(data);
+  const onSubmit = (data: UpdateCategoryFormValues) => {
+    editCategory({
+      body: data,
+      categoryId: category._id,
+    });
     form.reset();
   };
 
   useEffect(() => {
     if (isSuccess) {
-      router.push('/admin/categories');
-      toast.success('Kategoriya muvaffaqiyatli yaratildi');
+      router.push('/admin/catalogs/categories');
+      toast.success(`Kategoriya muvaffaqiyatli o'zgartirildi`);
     } else if (!responseData?.success) {
       toast.error(responseData?.message);
     }
@@ -64,9 +68,9 @@ const CreateCategory = () => {
     <div className="container mx-auto py-8">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle>Yangi Kategoriya Yaratish</CardTitle>
+          <CardTitle>Kategoriya o&apos;zgartirish</CardTitle>
           <CardDescription>
-            Mahsulotlar uchun yangi kategoriya yaratish uchun formani to‘ldiring.
+            Mahsulotlar uchun kategoriya o&apos;zgartirish uchun formani to‘ldiring.
           </CardDescription>
         </CardHeader>
 
@@ -108,7 +112,15 @@ const CreateCategory = () => {
                   <FormItem>
                     <FormLabel>Icon manzili (URL)</FormLabel>
                     <FormControl>
-                      <Input placeholder={`<svg xmlns="http://www.w3.org/20...`} {...field} />
+                      <div className="flex flex-col gap-2">
+                        <Input placeholder={`<svg xmlns="http://www.w3.org/20...`} {...field} />
+                        <div className="w-full flex items-center justify-end">
+                          <div
+                            className="bg-gray-100 px-2 py-1.5 rounded-lg"
+                            dangerouslySetInnerHTML={{ __html: form.getValues('icon') ?? '' }}
+                          />
+                        </div>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -117,14 +129,14 @@ const CreateCategory = () => {
             </CardContent>
 
             <CardFooter className="flex justify-end mt-6">
-              <Button type="submit" disabled={isCategoryCreate}>
-                {isCategoryCreate ? (
+              <Button type="submit" disabled={isEditCategory}>
+                {isEditCategory ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Yaratilmoqda...
+                    O&apos;zgartirilmoqda...
                   </>
                 ) : (
-                  'Kategoriya yaratish'
+                  `Kategoriyani o'zgartirish`
                 )}
               </Button>
             </CardFooter>
@@ -135,4 +147,4 @@ const CreateCategory = () => {
   );
 };
 
-export default CreateCategory;
+export default EditCategory;

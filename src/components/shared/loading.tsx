@@ -35,7 +35,7 @@ const Loading: React.FC<LoadingProps> = ({
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 py-4">
+    <div className="flex items-center justify-center gap-2 py-4 h-48">
       <Loader2 className={cn('text-blue-500 animate-spin', sizeClasses[size])} />
       {text && <span className="text-gray-600 text-sm">{text}</span>}
     </div>

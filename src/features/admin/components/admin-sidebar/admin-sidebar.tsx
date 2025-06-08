@@ -38,30 +38,34 @@ const paths = [
     },
   ],
   [
-    { path: '/admin/categories', icon: <Grid className="size-5" />, label: 'Kategoriyalar' },
     {
-      path: '/admin/categories/create',
+      path: '/admin/catalogs/categories',
+      icon: <Grid className="size-5" />,
+      label: 'Kategoriyalar',
+    },
+    {
+      path: '/admin/catalogs/categories/create',
       icon: <Grid2x2Plus className="size-5" />,
       label: `Kategoriya qo'shish`,
     },
 
     {
-      path: '/admin/subcategories',
+      path: '/admin/catalogs/subcategories',
       icon: <LayoutList className="size-5" />,
       label: 'Pastki kategoriya',
     },
     {
-      path: '/admin/subcategories/create',
+      path: '/admin/catalogs/subcategories/create',
       icon: <CopyPlus className="size-5" />,
       label: `Pastki kategoriya qo'shish`,
     },
     {
-      path: '/admin/groups',
+      path: '/admin/catalogs/groups',
       icon: <ListChecks className="size-5" />,
       label: `Gruppa`,
     },
     {
-      path: '/admin/groups/create',
+      path: '/admin/catalogs/groups/create',
       icon: <ListPlus className="size-5" />,
       label: `Gruppa qo'shish`,
     },
