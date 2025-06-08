@@ -4,17 +4,20 @@ import { useKeenSlider } from 'keen-slider/react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { useFetchBanners } from '../hooks/use-fetch-banners';
-
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { BannerResponse } from '@/fetures/admin/banners/types';
 import { cn } from '@/lib/utils';
 
 import 'keen-slider/keen-slider.min.css';
 
-export default function BannerSlider() {
+type BannerPropsType = {
+  banners: BannerResponse;
+};
+
+export default function BannerSlider({ banners }: BannerPropsType) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { banners, isBannerLoading } = useFetchBanners();
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
@@ -25,19 +28,38 @@ export default function BannerSlider() {
   });
 
   useEffect(() => {
-    if (isBannerLoading || !instanceRef.current || !banners?.data?.length) return;
+    if (!imagesLoaded || !instanceRef.current || !banners?.data?.length) return;
 
     const interval = setInterval(() => {
       instanceRef.current?.next();
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isBannerLoading, instanceRef, banners?.data?.length]);
+  }, [imagesLoaded, instanceRef, banners?.data?.length]);
+
+  useEffect(() => {
+    if (!banners?.data?.length) return;
+
+    const imgs = banners.data.map((banner) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = banner.imageUrl;
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    });
+
+    Promise.all(imgs).then(() => setImagesLoaded(true));
+  }, [banners]);
 
   const handlePrev = () => instanceRef.current?.prev();
   const handleNext = () => instanceRef.current?.next();
 
-  if (isBannerLoading) {
+  if (!banners) {
+    return <Skeleton className="w-full h-72 rounded-lg" />;
+  }
+
+  if (!imagesLoaded) {
     return <Skeleton className="w-full h-72 rounded-lg" />;
   }
 

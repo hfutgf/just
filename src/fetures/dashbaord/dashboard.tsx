@@ -1,11 +1,21 @@
 import React from 'react';
 
-import Banner from './components/banner';
+import { BannerResponse } from '../admin/banners/types';
+import { CategoryResponseType } from '../types/category.types';
 
-const Dashboard = () => {
+import Banner from './components/banner';
+import Categories from './components/categories';
+
+type DashboardPropsType = {
+  banners: BannerResponse;
+  categories: CategoryResponseType;
+};
+
+const Dashboard = ({ banners, categories }: DashboardPropsType) => {
   return (
     <div className="w-full">
-      <Banner />
+      <Categories categories={categories} />
+      <Banner banners={banners} />
     </div>
   );
 };
