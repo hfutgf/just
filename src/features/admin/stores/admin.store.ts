@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { LoginAdminResponse } from '@/fetures/admin/login/types';
+import { LoginAdminResponse } from '@/features/admin/login/types';
 
 export type AdminType = LoginAdminResponse['admin'];
 

@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 
-import Header from '@/components/shared/header';
+import Header from '@/components/shared/headers/header';
 
 const MainLayout = ({ children }: { children: ReactNode }): ReactElement => {
   return (
@@ -14,7 +14,7 @@ const MainLayout = ({ children }: { children: ReactNode }): ReactElement => {
           <div className="absolute top-3/4 left-1/3 w-48 h-48 bg-blue-200/25 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="w-full relative z-10">{children}</div>
+        <div className="max-w-[1260px] mx-auto relative z-10">{children}</div>
       </main>
     </div>
   );

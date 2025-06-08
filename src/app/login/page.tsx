@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import Login from '@/fetures/login/login';
+import Login from '@/features/login/login';
 
 const LoginPage = (): ReactElement => {
   return <Login />;

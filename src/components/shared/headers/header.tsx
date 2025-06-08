@@ -1,19 +1,36 @@
 'use client';
 
-import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingCart, User, Menu, X, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, useRef, useEffect } from 'react';
+
+import Catalogs from '../catalogs';
+
+import MobileHeader from './mobile-header';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 const Header = (): ReactElement => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isOpenCatalogs, setIsOpenCatalogs] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const catalogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (catalogRef.current && !catalogRef.current.contains(event.target as Node)) {
+        setIsOpenCatalogs(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1260px] mx-auto relative">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href={'/'} className="flex items-center space-x-3">
@@ -30,25 +47,16 @@ const Header = (): ReactElement => {
           </div>
 
           <div className="hidden lg:flex items-center flex-1 max-w-2xl mx-8">
-            <nav className="flex items-center space-x-8 mr-8">
-              <Link
-                href="#"
-                className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
+            <nav className="flex items-center  mr-8" ref={catalogRef}>
+              <Button
+                onClick={() => setIsOpenCatalogs(!isOpenCatalogs)}
+                className="text-white flex items-center gap-2 bg-green-600 hover:bg-green-700 p-2 rounded-md font-medium transition-all duration-300"
               >
+                {isOpenCatalogs ? <X className="h-5 w-5" /> : <LayoutGrid className="h-5 w-5" />}
                 Katalog
-              </Link>
-              <Link
-                href="#"
-                className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
-              >
-                Yangiliklar
-              </Link>
-              <Link
-                href="#"
-                className="text-gray-700 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105"
-              >
-                Aksiyalar
-              </Link>
+              </Button>
+
+              {isOpenCatalogs && <Catalogs />}
             </nav>
 
             <div className="relative flex-1">
@@ -114,49 +122,12 @@ const Header = (): ReactElement => {
             </Button>
           </div>
         </div>
-
-        <div className="lg:hidden py-3 border-t border-gray-100">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <Input
-              type="search"
-              placeholder="Mahsulot qidirish..."
-              className="w-full pl-12 pr-4 py-3 bg-gray-50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
-            />
-          </div>
-        </div>
-
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-100 bg-white/95 backdrop-blur-xl">
-            <nav className="flex flex-col space-y-2">
-              <Button
-                variant="ghost"
-                className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
-              >
-                Katalog
-              </Button>
-              <Button
-                variant="ghost"
-                className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
-              >
-                Yangiliklar
-              </Button>
-              <Button
-                variant="ghost"
-                className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
-              >
-                Aksiyalar
-              </Button>
-              <Button
-                variant="ghost"
-                className="justify-start text-gray-700 hover:text-purple-600 font-medium py-2 px-4 rounded-xl hover:bg-purple-50 transition-all duration-300"
-              >
-                <User className="h-4 w-4 mr-2" />
-                Profil
-              </Button>
-            </nav>
-          </div>
-        )}
+        <MobileHeader
+          isMenuOpen={isMenuOpen}
+          isOpenCatalogs={isOpenCatalogs}
+          setIsMenuOpen={setIsMenuOpen}
+          setIsOpenCatalogs={setIsOpenCatalogs}
+        />
       </div>
     </header>
   );

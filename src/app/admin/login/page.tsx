@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AdminLogin from '@/fetures/admin/login/admin-login';
+import AdminLogin from '@/features/admin/login/admin-login';
 
 const AdminLoginPage = () => {
   return <AdminLogin />;

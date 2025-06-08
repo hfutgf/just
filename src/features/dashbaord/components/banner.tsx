@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { BannerResponse } from '@/fetures/admin/banners/types';
+import { BannerResponse } from '@/features/admin/banners/types';
 import { cn } from '@/lib/utils';
 
 import 'keen-slider/keen-slider.min.css';
@@ -104,7 +104,7 @@ export default function BannerSlider({ banners }: BannerPropsType) {
             key={idx}
             onClick={() => instanceRef.current?.moveToIdx(idx)}
             className={cn(
-              'w-3 h-3 rounded-full transition-all duration-300',
+              'w-2 h-2 rounded-full transition-all duration-300',
               currentSlide === idx ? 'bg-white opacity-100 scale-110' : 'bg-white opacity-30'
             )}
           />

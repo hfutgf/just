@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CreateBanner from '@/fetures/admin/banners/create-banner';
+import CreateBanner from '@/features/admin/banners/create-banner';
 
 const CreateBannerPage = () => {
   return <CreateBanner />;

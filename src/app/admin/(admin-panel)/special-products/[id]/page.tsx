@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
 import { serverApiFetch } from '@/api/server-api';
-import { ResponseSpecialProductType } from '@/fetures/admin/special-products/types';
-import SpecialProductView from '@/fetures/admin/special-products/view/SpecialProductView';
+import { ResponseSpecialProductType } from '@/features/admin/special-products/types';
+import SpecialProductView from '@/features/admin/special-products/view/SpecialProductView';
 
 interface SpecialProductUpdatePageProps {
   params: Promise<{

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditSpecialProduct from '@/fetures/admin/special-products/edit/edit-special-product';
+import EditSpecialProduct from '@/features/admin/special-products/edit/edit-special-product';
 
 interface SpecialProductUpdatePageProps {
   params: Promise<{

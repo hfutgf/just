@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
-import AdminHeader from '@/fetures/admin/components/admin-header';
-import AdminSidebar from '@/fetures/admin/components/admin-sidebar/admin-sidebar';
+import AdminHeader from '@/features/admin/components/admin-header';
+import AdminSidebar from '@/features/admin/components/admin-sidebar/admin-sidebar';
 
 const AdminPanelLayout = ({ children }: { children: ReactElement }) => {
   return (

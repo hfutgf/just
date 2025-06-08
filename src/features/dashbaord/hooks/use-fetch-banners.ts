@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { axiosDefault } from '@/api/interceptors';
-import { BannerResponse } from '@/fetures/admin/banners/types';
+import { BannerResponse } from '@/features/admin/banners/types';
 
 export function useFetchBanners() {
   const { data: banners, isLoading: isBannerLoading } = useQuery({

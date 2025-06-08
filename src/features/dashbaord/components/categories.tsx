@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { CategoryResponseType } from '@/fetures/types/category.types';
+import { CategoryResponseType } from '@/features/types/category.types';
 
 type CategoriesPropsType = {
   categories: CategoryResponseType;

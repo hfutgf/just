@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BannersView from '@/fetures/admin/banners/banners-view';
+import BannersView from '@/features/admin/banners/banners-view';
 
 const BannersPage = () => {
   return <BannersView />;

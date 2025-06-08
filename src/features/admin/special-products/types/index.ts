@@ -1,5 +1,5 @@
-import { CategoryType } from '@/fetures/types/category.types';
-import { PaginationOptionsType, SubCategoryType } from '@/fetures/types/sub-cateogry.type';
+import { CategoryType } from '@/features/types/category.types';
+import { PaginationOptionsType, SubCategoryType } from '@/features/types/sub-cateogry.type';
 
 export type SpecialProductType = {
   _id: string;

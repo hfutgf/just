@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AdminDashboard from '@/fetures/admin/dashboard/dashboard';
+import AdminDashboard from '@/features/admin/dashboard/dashboard';
 
 const AdminPanelDashboard = () => {
   return <AdminDashboard />;
