@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 import { CategoryFormType, CategoriesResponseType } from '../../types/category.types';
 
@@ -25,6 +26,9 @@ export function useEditCategory() {
           `/categories/${categoryId}`,
           body
         );
+        if (!response.data.success) {
+          toast.error(response.data.message);
+        }
         return response.data;
       } catch (error) {
         errorResponse(error as Error);

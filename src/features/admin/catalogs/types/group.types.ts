@@ -7,3 +7,9 @@ export type GroupType = {
   createdAt: string;
   updatedAt?: string;
 };
+
+export type GroupResponseType = {
+  data: GroupType[];
+  success: boolean;
+  message?: string;
+};

@@ -16,3 +16,9 @@ export type PaginationOptionsType = {
   totalPages: number;
   totalItems: number;
 };
+
+export type SubCategoriesResponseType = {
+  data: SubCategoryType[];
+  success: boolean;
+  message?: string;
+};
