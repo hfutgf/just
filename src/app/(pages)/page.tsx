@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 
 import { serverApiFetch } from '@/api/server-api';
 import { BannerResponse } from '@/features/admin/banners/types';
+import { CategoriesResponseType } from '@/features/admin/catalogs/types/category.types';
 import Dashboard from '@/features/dashbaord/dashboard';
-import { CategoriesResponseType } from '@/features/types/category.types';
 
 const Page = async () => {
   try {

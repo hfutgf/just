@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { CategoryFormType, CategoriesResponseType } from '../../types/category.types';
+
 import { axiosAdminApi } from '@/api/interceptors';
-import { CategoryFormType, CategoriesResponseType } from '@/features/types/category.types';
 import { errorResponse } from '@/utils/toasts';
 
 export function useEditCategory() {

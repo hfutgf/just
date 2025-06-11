@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { CategoriesResponseType } from '../../types/category.types';
+
 import { axiosDefault } from '@/api/interceptors';
-import { CategoriesResponseType } from '@/features/types/category.types';
 
 export const useFetchCategories = () => {
   const {

@@ -7,8 +7,6 @@ import {
   Hammer,
   ImagePlus,
   Images,
-  LayoutList,
-  ListChecks,
   ListPlus,
   Sofa,
 } from 'lucide-react';
@@ -48,21 +46,10 @@ const paths = [
       icon: <Grid2x2Plus className="size-5" />,
       label: `Kategoriya qo'shish`,
     },
-
-    {
-      path: '/admin/catalogs/subcategories',
-      icon: <LayoutList className="size-5" />,
-      label: 'Pastki kategoriya',
-    },
     {
       path: '/admin/catalogs/subcategories/create',
       icon: <CopyPlus className="size-5" />,
       label: `Pastki kategoriya qo'shish`,
-    },
-    {
-      path: '/admin/catalogs/groups',
-      icon: <ListChecks className="size-5" />,
-      label: `Gruppa`,
     },
     {
       path: '/admin/catalogs/groups/create',

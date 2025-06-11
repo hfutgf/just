@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { CategoriesResponseType } from '../../types/category.types';
+
 import { axiosAdminApi } from '@/api/interceptors';
-import { CategoriesResponseType } from '@/features/types/category.types';
 import { errorResponse } from '@/utils/toasts';
 
 export function useDeleteCategory() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BannerResponse } from '../admin/banners/types';
-import { CategoriesResponseType } from '../types/category.types';
+import { CategoriesResponseType } from '../admin/catalogs/types/category.types';
 
 import Banner from './components/banner';
 import Categories from './components/categories';

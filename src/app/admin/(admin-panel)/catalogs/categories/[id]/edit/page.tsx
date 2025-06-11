@@ -3,7 +3,7 @@ import React from 'react';
 
 import { serverApiFetch } from '@/api/server-api';
 import EditCategory from '@/features/admin/catalogs/categories/edit-category';
-import { CategoryResponseType } from '@/features/types/category.types';
+import { CategoryResponseType } from '@/features/admin/catalogs/types/category.types';
 
 interface EditCategoryPageProps {
   params: Promise<{

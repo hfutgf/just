@@ -7,6 +7,8 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import { CategoryType } from '../types/category.types';
+
 import { useEditCategory } from './hooks/use-edit-category';
 import {
   updateCategoryFormSchema,
@@ -31,7 +33,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { CategoryType } from '@/features/types/category.types';
 
 const EditCategory = ({ category }: { category: CategoryType }) => {
   const router = useRouter();
